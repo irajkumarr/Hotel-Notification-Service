@@ -8,4 +8,5 @@ const addForgotPasswordEmailJob = async (payload) => {
 
 module.exports = {
   addForgotPasswordEmailJob,
+  SEND_FORGOT_PASSWORD_EMAIL_PAYLOAD,
 };
