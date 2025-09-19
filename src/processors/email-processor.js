@@ -6,6 +6,7 @@ const {
 const { MAILER_QUEUE } = require("../queues/mailer-queue");
 const { Worker } = require("bullmq");
 const { EmailService } = require("../services");
+const { renderMailTemplate } = require("../templates/templates-handler");
 
 const setupMailerWorker = () => {
   // Worker to process mail-related jobs
@@ -15,10 +16,14 @@ const setupMailerWorker = () => {
       const payload = job.data;
       switch (job.name) {
         case SEND_FORGOT_PASSWORD_EMAIL_PAYLOAD:
+          const emailContent = await renderMailTemplate(
+            payload.templateId,
+            payload.params
+          );
           await EmailService.sendEmail(
             payload.to,
             payload.subject,
-            payload.body
+            emailContent
           );
           Logger.info(`📧 Forgot password email sent to ${payload.to}`);
           break;
