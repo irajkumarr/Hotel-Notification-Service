@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const {
   attachCorrelationIdMiddleware,
 } = require("./middlewares/correlation-middleware");
+const { setupMailerWorker } = require("./processors/email-processor");
 
 const app = express();
 
@@ -20,6 +21,9 @@ app.use("/api", apiRoutes);
 
 //* Error Handler
 app.use(errorHandler);
+
+//* Start worker
+setupMailerWorker();
 
 //Server starting
 app.listen(ServerConfig.PORT, () => {
