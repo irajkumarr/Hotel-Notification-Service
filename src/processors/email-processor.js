@@ -35,8 +35,9 @@ const setupMailerWorker = () => {
     { connection: redisConnection }
   );
 
-  mailProcessor.on("failed", () => {
-    console.error("Mail processing failed");
+  mailProcessor.on("failed", (job, err) => {
+    console.error("Mail processing failed:", err.message);
+    console.error("Failed job data:", job.data);
   });
 
   mailProcessor.on("completed", () => {
