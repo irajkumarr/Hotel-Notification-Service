@@ -16,13 +16,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 app.use(attachCorrelationIdMiddleware);
 
-//routes
+//routes to use
 app.use("/api", apiRoutes);
 
 //* Error Handler
 app.use(errorHandler);
 
-//* Start worker
+//* Start worker 
 setupMailerWorker();
 
 //Server starting
