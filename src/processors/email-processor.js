@@ -1,8 +1,8 @@
 const { Logger } = require("../config");
 const { redisConnection } = require("../config/redis-config");
 const {
-  SEND_FORGOT_PASSWORD_EMAIL_PAYLOAD,
-  SEND_VERIFICATION_EMAIL_PAYLOAD,
+  FORGOT_PASSWORD_EMAIL_JOB,
+  VERIFICATION_EMAIL_JOB,
 } = require("../producers/email-producer");
 const { MAILER_QUEUE } = require("../queues/mailer-queue");
 const { Worker } = require("bullmq");
@@ -20,7 +20,7 @@ const setupMailerWorker = () => {
         payload.params
       );
       switch (job.name) {
-        case SEND_FORGOT_PASSWORD_EMAIL_PAYLOAD:
+        case FORGOT_PASSWORD_EMAIL_JOB:
           await EmailService.sendEmail(
             payload.to,
             payload.subject,
@@ -28,7 +28,7 @@ const setupMailerWorker = () => {
           );
           Logger.info(`📧 Forgot password email sent to ${payload.to}`);
           break;
-        case SEND_VERIFICATION_EMAIL_PAYLOAD:
+        case VERIFICATION_EMAIL_JOB:
           await EmailService.sendEmail(
             payload.to,
             payload.subject,
