@@ -2,6 +2,7 @@ const { mailerQueue } = require("../queues/mailer-queue");
 
 const FORGOT_PASSWORD_EMAIL_JOB = "send:forgot-password-email";
 const VERIFICATION_EMAIL_JOB = "send:verification-email";
+const BOOKING_EMAIL_JOB = "send:booking-email";
 
 /**
  * Adds a forgot password email job to the queue.
@@ -15,9 +16,15 @@ const addVerificationEmailJob = async (payload) => {
   await mailerQueue.add(VERIFICATION_EMAIL_JOB, payload);
 };
 
+const addBookingEmailJob = async (payload) => {
+  await mailerQueue.add(BOOKING_EMAIL_JOB, payload);
+};
+
 module.exports = {
   addForgotPasswordEmailJob,
   FORGOT_PASSWORD_EMAIL_JOB,
   addVerificationEmailJob,
   VERIFICATION_EMAIL_JOB,
+  addBookingEmailJob,
+  BOOKING_EMAIL_JOB,
 };

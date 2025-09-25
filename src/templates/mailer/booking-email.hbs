@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Booking Confirmation</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f9f9f9; margin: 0; padding: 0; }
+    .container { max-width: 600px; margin: 40px auto; background-color: #fff; padding: 20px; border-radius: 8px; border: 1px solid #eee; }
+    h2 { color: #333; }
+    .details { margin: 20px 0; }
+    .details p { margin: 5px 0; }
+    .highlight { font-weight: bold; color: #007BFF; }
+    .footer { margin-top: 30px; font-size: 12px; color: #999; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Hello {{name}},</h2>
+    <p>Thank you for your booking! Here are your booking details:</p>
+
+    <div class="details">
+      <p><span class="highlight">Booking ID:</span> {{bookingId}}</p>
+      <p><span class="highlight">Hotel:</span> {{hotelName}}</p>
+      <p><span class="highlight">Hotel Address:</span> {{hotelAddress}}</p>
+      <p><span class="highlight">Room Type:</span> {{roomType}}</p>
+      <p><span class="highlight">Price:</span> Rs{{price}}</p>
+      <p><span class="highlight">Check-in Date:</span> {{checkInDate}}</p>
+      <p><span class="highlight">Check-out Date:</span> {{checkOutDate}}</p>
+      <p><span class="highlight">Total Guests:</span> {{totalGuests}}</p>
+    </div>
+
+    <p>We hope you enjoy your stay! If you have any questions, feel free to contact our support team.</p>
+
+    <p>Thanks,<br/>Hotel Booking Team</p>
+
+    <div class="footer">
+      <p>This is an automated message. Please do not reply.</p>
+    </div>
+  </div>
+</body>
+</html>

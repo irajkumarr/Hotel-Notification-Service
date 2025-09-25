@@ -3,6 +3,7 @@ const { redisConnection } = require("../config/redis-config");
 const {
   FORGOT_PASSWORD_EMAIL_JOB,
   VERIFICATION_EMAIL_JOB,
+  BOOKING_EMAIL_JOB,
 } = require("../producers/email-producer");
 const { MAILER_QUEUE } = require("../queues/mailer-queue");
 const { Worker } = require("bullmq");
@@ -35,6 +36,14 @@ const setupMailerWorker = () => {
             emailContent
           );
           Logger.info(`📧 Verification email sent to ${payload.to}`);
+          break;
+        case BOOKING_EMAIL_JOB:
+          await EmailService.sendEmail(
+            payload.to,
+            payload.subject,
+            emailContent
+          );
+          Logger.info(`📧 Booking Confirm email sent to ${payload.to}`);
           break;
 
         default:
